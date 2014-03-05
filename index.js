@@ -9,16 +9,23 @@ var RULES = (function () {
     return op1 == op2;
   }
 
+  function notEqual(op1, op2) {
+    return op1 != op2;
+  }
+
   return {
     evaluate: evaluate,
-    EGAL: equal
+
+    EGAL: equal,
+    NONEGAL: notEqual
   };
 })();
 
-(function (EGAL) {
+(function (EGAL, NONEGAL) {
 
   console.log(RULES.evaluate( [ 5 ,EGAL, 5 ] ));
+  console.log(RULES.evaluate( [ 5 ,NONEGAL, 3 ] ));
 
-})(RULES.EGAL);
+})(RULES.EGAL, RULES.NONEGAL);
 
 

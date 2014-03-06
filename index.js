@@ -2,7 +2,7 @@ var RULES = (function () {
   'use strict';
 
   function parse(raw) {
-    return true;
+    return '[' + raw.replace(/\(\s*/g, '[').replace(/\s*\)/g, ']').replace(/\s/g, ',') + ']';
   }
 
   function evaluate(expr) {
@@ -101,7 +101,7 @@ var RULES = (function () {
   ];
 
   rawExpressions.forEach(function (raw) {
-    console.log(RULES.parse(raw));
+    console.log(RULES.evaluate(eval(RULES.parse(raw))));
   });
 
 })(RULES.EGAL, RULES.NONEGAL, RULES.ET, RULES.OU, RULES.DANS);

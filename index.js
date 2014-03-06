@@ -1,6 +1,10 @@
 var RULES = (function () {
   'use strict';
 
+  function parse(raw) {
+    return
+  }
+
   function evaluate(expr) {
     return isExpression(expr) ? expr[1](evaluate(expr[0]), evaluate(expr[2])) : expr;
   }
@@ -30,28 +34,42 @@ var RULES = (function () {
     return op1 || op2;
   }
 
+  function inside(op1, op2) {
+    return op2.indexOf(op1) !== -1;
+  }
+
   return {
     evaluate: evaluate,
+    parse: parse,
 
     EGAL: equal,
     NONEGAL: notEqual,
     ET: and,
-    OU: or
+    OU: or,
+    DANS: inside
   };
 })();
 
-(function (EGAL, NONEGAL, ET, OU) {
+(function (EGAL, NONEGAL, ET, OU, DANS) {
   'use strict';
 
   var testExpressions = [
 
-    [ 5 ,EGAL, 5 ],
+    [ 5 ,EGAL, 5 ]
 
-    [ 5 ,NONEGAL, 3 ],
+    ,
 
-    [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]],
+    [ 5 ,NONEGAL, 3 ]
 
-    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]],
+    ,
+
+    [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]]
+
+    ,
+
+    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]]
+
+    ,
 
     [
       [ 5 ,EGAL, 5 ]
@@ -62,13 +80,17 @@ var RULES = (function () {
         [ 5 ,EGAL, 2 ]
       ]
     ]
-  ];
 
+    ,
+
+    [ 5 ,DANS, [4,5,6] ]
+
+  ];
 
   testExpressions.forEach(function (expr) {
     console.log(RULES.evaluate(expr));
   });
 
-})(RULES.EGAL, RULES.NONEGAL, RULES.ET, RULES.OU);
+})(RULES.EGAL, RULES.NONEGAL, RULES.ET, RULES.OU, RULES.DANS);
 
 

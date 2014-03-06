@@ -14,3 +14,41 @@ Offer the simplest syntax possible to create simple expressions. Thus,
 ## Trying it out
 
 Either with node (`node index.js`) or in the browser console (open `index.html`).
+
+## Syntax
+
+```
+    [ 5 ,EGAL, 5 ]
+
+    [ 5 ,NONEGAL, 3 ]
+
+    [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]]
+
+    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]]
+
+    [
+      [ 5 ,EGAL, 5 ]
+      ,ET,
+      [
+        [ 5 ,EGAL, 5 ]
+        ,OU,
+        [ 5 ,EGAL, 2 ]
+      ]
+    ]
+
+    [ 5 ,DANS, [4,5,6] ]
+```
+
+```
+    5 EGAL 5
+    
+    5 NONEGAL 3
+    
+    ( 5 EGAL 5 ) ET ( 5 NONEGAL 3 )
+    
+    ( 5 EGAL 5 ) OU ( 5 EGAL 2 )
+    
+    ( 5 EGAL 5 ) ET (( 5 EGAL 5 ) OU ( 5 EGAL 2 ))
+    
+    5 DANS [4,5,6]
+```

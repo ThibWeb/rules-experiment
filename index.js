@@ -46,11 +46,24 @@ var RULES = (function () {
 })();
 
 (function (EGAL, NONEGAL, ET, OU) {
+  'use strict';
 
-  console.log(RULES.evaluate( [ 5 ,EGAL, 5 ] ));
-  console.log(RULES.evaluate( [ 5 ,NONEGAL, 3 ] ));
-  console.log(RULES.evaluate( [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]] ));
-  console.log(RULES.evaluate( [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]] ));
+  var testExpressions = [
+
+    [ 5 ,EGAL, 5 ],
+
+    [ 5 ,NONEGAL, 3 ],
+
+    [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]],
+
+    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]]
+
+  ];
+
+
+  testExpressions.forEach(function (expr) {
+    console.log(RULES.evaluate(expr));
+  });
 
 })(RULES.EGAL, RULES.NONEGAL, RULES.ET, RULES.OU);
 

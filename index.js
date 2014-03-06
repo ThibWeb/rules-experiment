@@ -2,15 +2,10 @@ var RULES = (function () {
   'use strict';
 
   function evaluate(expr) {
-    if (isRuleExpression(expr)) {
-      return expr[1](evaluate(expr[0]), evaluate(expr[2]));
-    }
-    else {
-      return expr;
-    }
+    return isExpression(expr) ? expr[1](evaluate(expr[0]), evaluate(expr[2])) : expr;
   }
 
-  function isRuleExpression(expr) {
+  function isExpression(expr) {
     return expr instanceof Array && isFunction(expr[1]);
   }
 
@@ -56,8 +51,17 @@ var RULES = (function () {
 
     [[ 5 ,EGAL, 5 ] ,ET, [ 5 ,NONEGAL, 3 ]],
 
-    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]]
+    [[ 5 ,EGAL, 5 ] ,OU, [ 5 ,EGAL, 2 ]],
 
+    [
+      [ 5 ,EGAL, 5 ]
+      ,ET,
+      [
+        [ 5 ,EGAL, 5 ]
+        ,OU,
+        [ 5 ,EGAL, 2 ]
+      ]
+    ]
   ];
 
 

@@ -2,7 +2,7 @@ var RULES = (function () {
   'use strict';
 
   function parse(raw) {
-    return
+    return true;
   }
 
   function evaluate(expr) {
@@ -89,6 +89,19 @@ var RULES = (function () {
 
   testExpressions.forEach(function (expr) {
     console.log(RULES.evaluate(expr));
+  });
+
+  var rawExpressions = [
+    '5 EGAL 5',
+    '5 NONEGAL 3',
+    '( 5 EGAL 5 ) ET ( 5 NONEGAL 3 )',
+    '( 5 EGAL 5 ) OU ( 5 EGAL 2 )',
+    '( 5 EGAL 5 ) ET (( 5 EGAL 5 ) OU ( 5 EGAL 2 ))',
+    '5 DANS [4,5,6]'
+  ];
+
+  rawExpressions.forEach(function (raw) {
+    console.log(RULES.parse(raw));
   });
 
 })(RULES.EGAL, RULES.NONEGAL, RULES.ET, RULES.OU, RULES.DANS);
